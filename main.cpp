@@ -66,67 +66,72 @@ int main(int argc, const char * argv[])
         }
     }
 
+    // sort the data in each year in case the input data is not sorted
+    map<int, vector<DataPoint*>, greater<int>>::iterator mapit;
+    for (mapit = datamap.begin(); mapit != datamap.end(); mapit++) {
+        // sort data in each year
+        vector<DataPoint*> *v = &mapit->second;
+        sort(v->begin(), v->end(), comparator);
+    }
+
     CalcRatios calculator;
 
     // Get Annual P/E
     vector<float> annualPE = calculator.getAnnualPE(datamap);
-    cout << "Annual P/E: ";
+    cout << "Annual P/E: " << endl;
     for (int i = 0; i < static_cast<int>(annualPE.size()); i++) {
         cout << annualPE[i] << ", ";
     }
-    cout << endl;
+    cout << endl << endl;
     
     // Get Tailing P/E
     vector<float> trailingPE = calculator.getTrailingPE(datamap);
-    cout << "Trailing P/E: ";
+    cout << "Trailing P/E: " << endl;
     for (int i = 0; i < static_cast<int>(trailingPE.size()); i++) {
         cout << trailingPE[i] << ", ";
     }
-    cout << endl;
+    cout << endl << endl;
 
     //Get Quarterly P/E
     vector<float> quarterlyPE = calculator.getQuarterlyPE(datamap);
-    cout << "Quarterly P/E: ";
+    cout << "Quarterly P/E: " << endl;
     for (int i = 0; i < static_cast<int>(quarterlyPE.size()); i++) {
         cout << quarterlyPE[i] << ", ";
     }
-    cout << endl;
-
+    cout << endl << endl;
 
     // Get year over year EPS growth
     vector<float> yoyEPSGrowth = calculator.getYoyEPSGrowth(datamap);
-    cout << "Yoy EPS Growth: ";
+    cout << "Yoy EPS Growth: " << endl;
     for (int i = 0; i < static_cast<int>(yoyEPSGrowth.size()); i++) {
         cout << yoyEPSGrowth[i] << ", ";
     }
-    cout << endl;
+    cout << endl << endl;
 
     // Get year over year Revenue growth
     vector<float> yoyRevenueGrowth = calculator.getYoyRevenueGrowth(datamap);
-    cout << "Yoy Revenue Growth: ";
+    cout << "Yoy Revenue Growth: " << endl;
     for (int i = 0; i < static_cast<int>(yoyRevenueGrowth.size()); i++) {
         cout << yoyRevenueGrowth[i] << ", ";
     }
-    cout << endl;
+    cout << endl << endl;
 
     // Get quarter over quarter EPS growth
     vector<float> qoqEPSGrowth = calculator.getQoqEPSGrowth(datamap);
-    cout << "Qoq EPS Growth: ";
+    cout << "Qoq EPS Growth: " << endl;
     for (int i = 0; i < static_cast<int>(qoqEPSGrowth.size()); i++) {
         cout << qoqEPSGrowth[i] << ", ";
     }
-    cout << endl;
+    cout << endl << endl;
 
     // Get quarter over quater revenue growth
     vector<float> qoqRevenueGrowth = calculator.getQoqRevenueGrowth(datamap);
-    cout << "Qoq Revenue Growth: ";
+    cout << "Qoq Revenue Growth: " << endl;
     for (int i = 0; i < static_cast<int>(qoqRevenueGrowth.size()); i++) {
         cout << qoqRevenueGrowth[i] << ", ";
     }
-    cout << endl;
+    cout << endl << endl;
     
-    map<int, vector<DataPoint*>, greater<int>>::iterator mapit;
-
     // Verify data points
     //for (mapit = datamap.begin(); mapit != datamap.end(); mapit++) {
     //    vector<DataPoint*> v = mapit->second;
